@@ -1,0 +1,316 @@
+/* static/css/rental_properties.css */
+
+/* Container and Page Title */
+#rental-properties-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-align: center;
+  background-color: #001423;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+/* Description */
+.page-description {
+  text-align: center;
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+  color: #666;
+}
+
+/* Section Titles */
+.section-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+/* Data Input Section (Form) */
+.data-input-section {
+  background-color: #f8f9fa; /* Light background for the form section */
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  margin-bottom: 2rem;
+}
+
+.property-form .form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid columns */
+  gap: 1rem; /* Space between grid items */
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1; /* Spans all columns in the grid */
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="date"],
+.form-group select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.form-group input[type="file"] {
+  padding: 0.3rem 0; /* Adjust padding for file input */
+}
+
+/* Hide number input spin buttons */
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+/* Form Action Buttons Container */
+.form-actions {
+  display: flex;
+  justify-content: center; /* Center buttons */
+  gap: 1rem; /* Space between buttons */
+  margin-top: 1.5rem;
+}
+
+.property-form .btn-save {
+  display: block; /* Make the button take full width of its container */
+  width: auto; /* Allow it to size to content plus padding */
+  margin: 0 auto; /* Center the button */
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  background-color: #28a745; /* Green for Add */
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.property-form .btn-save:hover {
+  background-color: #218838;
+}
+
+.btn-cancel { /* NEW STYLE FOR CANCEL BUTTON */
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  background-color: #6c757d; /* Grey for Cancel */
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-cancel:hover {
+  background-color: #5a6268;
+}
+
+
+/* Property List Section */
+.property-list-section {
+  margin-top: 2rem;
+}
+
+.list-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.list-controls select {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 0.95rem;
+}
+
+/* Data Table (similar to income.css) */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  margin-top: 1rem;
+  table-layout: fixed; /* Ensures consistent column widths */
+}
+
+.data-table thead th {
+  background-color: #deeaf7;
+  padding: 0.75rem;
+  font-weight: 600;
+  border-bottom: 2px solid #cbd6e2;
+  text-align: left;
+}
+
+.data-table th.rounded-tl-lg {
+  border-top-left-radius: 10px;
+}
+
+.data-table th.rounded-tr-lg {
+  border-top-right-radius: 10px;
+}
+
+.data-table tbody td {
+  padding: 0.65rem;
+  border-bottom: 1px solid #e4e4e4;
+  word-wrap: break-word; /* Ensure content wraps */
+}
+
+/* Column Widths for Property List */
+.data-table th:nth-child(1), .data-table td:nth-child(1) { width: 15%; } /* Property ID */
+.data-table th:nth-child(2), .data-table td:nth-child(2) { width: 25%; } /* Property Name */
+.data-table th:nth-child(3), .data-table td:nth-child(3) { width: 20%; } /* Ownership Association */
+.data-table th:nth-child(4), .data-table td:nth-child(4) { width: 15%; } /* Purchase Price */
+.data-table th:nth-child(5), .data-table td:nth-child(5) { width: 10%; } /* Documents */
+.data-table th:nth-child(6), .data-table td:nth-child(6) { width: 15%; } /* Actions */
+
+/* Buttons within table */
+.data-table .btn {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 2px;
+  display: inline-flex; /* Allows buttons to sit side-by-side */
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-shrink: 0;
+  width: auto;
+}
+
+.data-table .btn-edit {
+  background-color: #ffc107; /* Yellow for Edit */
+  color: #333;
+}
+.data-table .btn-edit:hover {
+  background-color: #e0a800;
+}
+
+.data-table .btn-delete {
+  background-color: #dc3545; /* Red for Delete */
+  color: white;
+}
+.data-table .btn-delete:hover {
+  background-color: #c82333;
+}
+
+.data-table .btn-view-docs {
+  background-color: #17a2b8; /* Info blue for View Docs */
+  color: white;
+}
+.data-table .btn-view-docs:hover {
+  background-color: #138496;
+}
+
+/* Message Box (copied from income.css) */
+.message-box {
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.message-box.message-box-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #28a745;
+}
+
+.message-box.message-box-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #dc3545;
+}
+
+.message-box.message-box-info {
+    background-color: #d1ecf1;
+    color: #001423; /* Dark text for readability */
+    border: 1px solid #17a2b8;
+}
+
+/* NEW: Styles for buttons INSIDE the message-box (specifically for showConfirm) */
+.message-box .btn {
+    /* Override any general .btn styles that might make them invisible */
+    padding: 8px 15px; /* Slightly larger padding for pop-up buttons */
+    font-size: 0.9rem; /* Clearer font size */
+    min-width: 80px; /* Ensure they have a minimum width */
+    color: white; /* Ensure text is white for contrast on their colored backgrounds */
+}
+
+.message-box .btn-save {
+    background-color: #28a745; /* Green for Yes */
+    display: block;
+    width: auto; /* Allow it to size to content plus padding */
+    margin: 0 auto; /* Center the button */
+    padding: 0.5rem 3rem;
+    font-size: 1rem;
+    color: white; /* Ensure text is white */
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.message-box .btn-save:hover {
+    background-color: #218838;
+}
+
+.message-box .btn-delete {
+    background-color: #dc3545; /* Red for No */
+
+    font-size: 1rem;
+    color: white; /* Ensure text is white */
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.message-box .btn-delete:hover {
+    background-color: #c82333;
+}
+
+
+/* Utility class for hiding elements */
+.hidden {
+  display: none;
+}

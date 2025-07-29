@@ -1,0 +1,299 @@
+/* static/css/main.css */
+
+/* Container and Page Title */
+#va-disability-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Hardcoded from _variables.scss */
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-align: center;
+  background-color: #001423; /* Hardcoded from _variables.scss */
+  color: #ffffff; /* Hardcoded from _variables.scss */
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+/* Description */
+.page-description {
+  text-align: center;
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+  color: #666;
+}
+
+/* Totals Section */
+#va-current-year-totals {
+  background-color: #e7f7fa; /* Hardcoded from _variables.scss */
+  padding: 1rem 1.5rem;
+  border: 2px solid #2c3e50; /* Hardcoded from _variables.scss (changed from #e7f7fa to a distinct blue) */
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+#va-current-year-totals .section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  /* Ensure "Current Calendar Year" stays on one line */
+  /* Remove white-space: nowrap here, apply to the span inside it */
+}
+
+#va-current-year-totals .section-title span#current-calendar-year {
+    white-space: nowrap; /* Keep the year and label together */
+}
+
+/* Export Button within Totals Section Title */
+#va-current-year-totals .btn-export {
+  margin-left: auto; /* Pushes it to the right within the flex container */
+  background-color: #4aa3df;
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0; /* Prevent it from shrinking */
+  width: auto; /* Ensure it takes only necessary width */
+}
+
+#va-current-year-totals .btn-export:hover {
+  background-color: #3592c4;
+}
+
+.total-summary-item {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0.25rem 0;
+}
+
+.total-summary-item span {
+  font-weight: bold;
+  float: right; /* Keep float for now as it's in provided CSS */
+}
+
+/* Date Display */
+.header-section {
+  text-align: right;
+  margin: 0.5rem 0 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Data Table */
+#va-disability-data-table { /* Targeting by ID for higher specificity */
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  margin-top: 1rem;
+  table-layout: fixed; /* CRUCIAL: Ensures consistent column widths across all rows */
+}
+
+#va-disability-data-table thead th {
+  background-color: #deeaf7;
+  padding: 0.75rem;
+  font-weight: 600;
+  border-bottom: 2px solid #cbd6e2;
+  text-align: left;
+}
+
+#va-disability-data-table th.rounded-tl-lg {
+  border-top-left-radius: 10px;
+}
+
+#va-disability-data-table th.rounded-tr-lg {
+  border-top-right-radius: 10px;
+}
+
+#va-disability-data-table tbody td {
+  padding: 0.65rem;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+/* FILL COLUMNS  & MONTH DISPLAY */
+/* Define column widths for consistency - apply directly to th and td */
+#va-disability-data-table th:nth-child(1),
+#va-disability-data-table td:nth-child(1) { width: 40%; } /* Month */
+#va-disability-data-table th:nth-child(2),
+#va-disability-data-table td:nth-child(2) { width: 20%; } /* Gross Pay */
+#va-disability-data-table th:nth-child(3),
+#va-disability-data-table td:nth-child(3) { width: 20%; } /* Taxed Amount */
+#va-disability-data-table th:nth-child(4),
+#va-disability-data-table td:nth-child(4) { width: 20%; } /* Net Pay */
+
+
+#va-disability-data-table input[type="number"] {
+  width: 35%;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  text-align: right;
+}
+
+#va-disability-data-table input[type="number"]::-webkit-outer-spin-button,
+#va-disability-data-table input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* Year Header Row (the <tr>) */
+.year-header-row { /* This class is on the <tr>. Its background will span the row. */
+  background-color: #d0e8ff; /* Hardcoded from _variables.scss */
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Year Header Cell (the <td> inside the .year-header-row <tr>) */
+.year-header-cell { /* This is the <td> inside the .year-header-row <tr> */
+  font-size: 1.05rem;
+  padding: 0.75rem;
+  border-bottom: 1px solid #9ec7e0;
+  /* Removed display: flex from here */
+  /* Content inside this td will be flexed */
+}
+
+.year-header-cell > .year-header-content { /* NEW: Inner div for flexing icon and text */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+
+.year-header-cell .toggle-icon {
+  margin-right: 0.5rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.year-header-cell.collapsed .toggle-icon {
+  transform: rotate(90deg);
+}
+
+.total-row td {
+  font-weight: bold;
+  background-color: #eef7ff; /* Hardcoded from _variables.scss */
+}
+
+.total-row td.rounded-bl-lg {
+  border-bottom-left-radius: 10px;
+}
+
+.total-row td.rounded-br-lg {
+  border-bottom-right-radius: 10px;
+}
+
+/* Export Area */
+.export-area {
+  background-color: #f1f7f9;
+  padding: 1rem;
+  margin-top: 2rem;
+  border-radius: 6px;
+}
+
+.export-area textarea {
+  width: 100%;
+  height: 200px;
+  border-radius: 5px;
+  padding: 1rem;
+  font-family: monospace;
+}
+
+.export-buttons-container {
+  display: flex;
+  justify-content: flex-end; /* Align button to the right */
+  margin-top: 0.75rem;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* General Button Styles */
+.btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-shrink: 0; /* Prevent from shrinking */
+  width: auto; /* Ensure it takes only necessary width */
+}
+
+.btn-save {
+  background-color: #4aa3df;
+  color: white;
+}
+
+.btn-save:hover {
+  background-color: #3592c4;
+}
+
+.btn-export {
+  background-color: #4aa3df;
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: 5px;
+  /* Specific styles for export button are already here, no need for btn-small */
+}
+
+.btn-export:hover {
+  background-color: #3592c4;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.copy-message {
+  margin-left: 1rem;
+  font-size: 0.9rem;
+  color: green;
+}
+
+.hidden-amount {
+  color: #aaa;
+  font-style: italic;
+}
+
+.message-box {
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.message-box.message-box-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #28a745;
+}
+
+.message-box.message-box-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #dc3545;
+}
+
+.message-box.message-box-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #17a2b8;
+}

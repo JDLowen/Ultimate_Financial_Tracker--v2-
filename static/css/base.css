@@ -1,0 +1,43 @@
+/* static/css/base.css */
+
+/* Base Styles */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif; /* Hardcoded from _variables.scss */
+  background-color: #f5f5f5; /* Hardcoded from _variables.scss */
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scroll during sidebar expansion */
+}
+
+/* Global link and button styles (from _base.scss, adjusted for plain CSS) */
+a,
+button {
+  color: white; /* Default for sidebar links/buttons */
+  text-decoration: none;
+  display: block; /* Ensures full width click area */
+  border: none;
+  background: none;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  font-size: 15px; /* Hardcoded from _variables.scss */
+}
+
+a:hover,
+button:hover {
+  background-color: #2c3e50; /* Hardcoded #333 */
+}
+
+/* Utility class for hiding elements */
+.hidden {
+  display: none;
+}
+
+/* Main Content Area (from _layout.scss, moved here as it's a core layout element) */
+main {
+  padding: 24px; /* Hardcoded from _variables.scss ($padding-large) */
+  flex: 1; /* Allows main content to take up remaining space */
+  overflow-x: auto; /* Ensures horizontal scrolling if content overflows */
+}

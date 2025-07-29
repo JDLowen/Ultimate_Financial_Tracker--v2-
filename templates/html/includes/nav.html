@@ -1,0 +1,74 @@
+<!-- templates/html/includes/nav.html -->
+<nav class="navbar-sidebar">
+  <div class="navbar-header">
+    <h2>Zeus Monies</h2>
+  </div>
+
+  {# Ensure h3 is inside the a tag for proper styling #}
+  <a href="{{ url_for('dashboard.home') }}"><h3 class="navbar-topic">Dashboard</h3></a>
+
+  <h3 class="navbar-topic">Personal Finances</h3>
+  <button class="navbar-dropdown-btn">
+    <span>Banking</span>
+    <i class="fas fa-chevron-down dropdown-icon"></i> {# Font Awesome down arrow #}
+  </button>
+  <div class="navbar-dropdown-content">
+    <a href="{{ url_for('personal.usaa') }}">USAA</a>
+    <a href="{{ url_for('personal.scu') }}">SCU</a>
+    <a href="{{ url_for('personal.n26') }}">N26</a>
+  </div>
+
+  <button class="navbar-dropdown-btn">
+    <span>Credit Cards</span>
+    <i class="fas fa-chevron-down dropdown-icon"></i> {# Font Awesome down arrow #}
+  </button>
+  <div class="navbar-dropdown-content">
+    <a href="{{ url_for('personal.chase') }}">Chase</a>
+    <a href="{{ url_for('personal.capital_one') }}">Capital One</a>
+  </div>
+
+  <button class="navbar-dropdown-btn">
+    <span>Income</span>
+    <i class="fas fa-chevron-down dropdown-icon"></i> {# Font Awesome down arrow #}
+  </button>
+  <div class="navbar-dropdown-content">
+    <a href="{{ url_for('personal.retirement') }}">USAF Retirement</a>
+    <a href="{{ url_for('personal.disability') }}">VA Disability</a>
+    <a href="{{ url_for('personal.dividends') }}">Cash Dividends</a>
+    <a href="{{ url_for('personal.stocks') }}">Stocks</a>
+  </div>
+
+  <h3 class="navbar-topic">Company Finances</h3>
+  <div class="navbar-section">
+    <a href="{{ url_for('company.jdl_global') }}">JDL Global adVentures</a>
+    <a href="{{ url_for('company.jdl_texas') }}">JDL Texas Holdings</a>
+    <a href="{{ url_for('company.jdl_virginia') }}">JDL Virginia Holdings</a>
+    <a href="{{ url_for('company.jdl_office') }}">JDL Office Management</a>
+    <a href="{{ url_for('company.thm_ug') }}">Two & Half Mex UG</a>
+    <a href="{{ url_for('company.rental_properties') }}">Rental Properties</a>
+  </div>
+
+  <h3 class="navbar-topic">Tax Overview</h3>
+  <div class="navbar-section">
+    <a href="{{ url_for('taxes.taxes_1040') }}">1040 Tax Tracker</a>
+    <a href="{{ url_for('taxes.taxes_jdl_global') }}">JDL Global Tax Tracker</a>
+    <a href="{{ url_for('taxes.taxes_jdl_texas') }}">JDL Texas Tax Tracker</a>
+    <a href="{{ url_for('taxes.taxes_jdl_virginia') }}">JDL Virginia Tax Tracker</a>
+    <a href="{{ url_for('taxes.taxes_jdl_office') }}">JDL Office Tax Tracker</a>
+    <a href="{{ url_for('taxes.taxes_thm_ug') }}">THM UG Tax Tracker</a>
+  </div>
+
+  <h3 class="navbar-topic">Financial Health</h3>
+  <div class="navbar-section">
+    <a href="{{ url_for('financial_health.personal_finances_overview') }}">Personal Finances</a>
+    <a href="{{ url_for('financial_health.budget') }}">Budget</a>
+    <a href="{{ url_for('financial_health.net_worth') }}">Net Worth</a>
+    <a href="{{ url_for('financial_health.expenses') }}">Expenses</a>
+    <a href="{{ url_for('financial_health.investments') }}">Investments</a>
+    <a href="{{ url_for('financial_health.loans') }}">Loans</a>
+    <a href="{{ url_for('financial_health.credit_score') }}">Credit Score</a>
+    <a href="{{ url_for('financial_health.financial_goals') }}">Financial Goals</a>
+    <a href="{{ url_for('financial_health.financial_education') }}">Financial Education</a>
+  </div>
+</nav>
+<script src="{{ url_for('static', filename='js/nav.js') }}" defer></script>

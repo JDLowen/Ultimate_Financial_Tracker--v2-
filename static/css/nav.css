@@ -1,0 +1,166 @@
+/* static/css/nav.css */
+
+/* Sidebar Navigation - Hover to Expand (from _sidebar.scss) */
+.navbar-sidebar {
+  width: 50px; /* Initial collapsed width */
+  background-color: #001423; /* Hardcoded #1f1f1f */
+  color: white;
+  height: 100vh; /* Full viewport height */
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden; /* CRUCIAL: Hide horizontal overflow */
+  padding: 16px 5px; /* Hardcoded from _variables.scss ($padding-medium) */
+  transition: width 0.3s ease, padding 0.3s ease;
+  flex-shrink: 0;
+  z-index: 1000;
+}
+
+.navbar-sidebar:hover {
+  width: 260px; /* Expanded width on hover */
+  padding: 16px; /* Restore full padding on hover */
+}
+
+/* Shared styles for elements whose text should be hidden/shown */
+.navbar-sidebar .navbar-header h2,
+.navbar-sidebar .navbar-topic,
+.navbar-sidebar .navbar-section a,
+.navbar-sidebar .navbar-dropdown-btn span {
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s ease;
+  display: block;
+}
+
+/* Show text on sidebar hover */
+.navbar-sidebar:hover .navbar-header h2,
+.navbar-sidebar:hover .navbar-topic,
+.navbar-sidebar:hover .navbar-section a,
+.navbar-sidebar:hover .navbar-dropdown-btn span {
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0.15s;
+}
+
+.navbar-sidebar .navbar-header h2 {
+  text-align: center;
+  color: #ecf0f1; /* Hardcoded from _variables.scss */
+  margin-bottom: 0;
+  line-height: 0;
+  transition: margin 0.3s ease, line-height 0.3s ease;
+}
+
+.navbar-sidebar .navbar-header:hover h2 {
+  margin-bottom: 16px; /* Hardcoded from _variables.scss ($padding-medium) */
+  line-height: normal;
+}
+
+/* Styles for direct 'a' tags like "Dashboard" */
+.navbar-sidebar > a {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: padding 0.3s ease;
+}
+
+.navbar-sidebar > a:hover {
+  padding: 10px 15px;
+  justify-content: flex-start;
+}
+
+.navbar-sidebar .navbar-topic {
+  padding-left: 0;
+  margin: 16px 0 8px; /* Hardcoded from _variables.scss ($padding-medium, $padding-small) */
+  color: #ccc; /*Manually added */
+  transition: padding-left 0.3s ease;
+  text-decoration: underline; /*Manually added */
+}
+
+.navbar-sidebar:hover .navbar-topic {
+  padding-left: 5px;
+}
+
+.navbar-sidebar .navbar-dropdown-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px; /*Manually added */
+  padding: 8px 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, padding 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-sidebar .navbar-dropdown-btn span {
+  margin-left: 0;
+  flex-grow: 1;
+  transition: margin-left 0.3s ease;
+}
+
+.navbar-sidebar .navbar-dropdown-btn .dropdown-icon {
+  margin-left: 0;
+  transition: margin-left 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navbar-sidebar .navbar-dropdown-btn.active .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.navbar-sidebar .navbar-dropdown-btn:hover {
+  background-color: #2c3e50; /*Manually added #333*/
+  padding: 8px 25px;
+  justify-content: flex-start;
+}
+
+.navbar-sidebar .navbar-dropdown-btn:hover span {
+  margin-left: 5px;
+}
+
+.navbar-sidebar .navbar-dropdown-btn:hover .dropdown-icon {
+  margin-left: auto;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.navbar-sidebar .navbar-dropdown-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  padding-left: 0;
+  
+}
+
+.navbar-sidebar .navbar-dropdown-content.show {
+  max-height: 500px;
+  padding-left: 15px;
+}
+
+.navbar-sidebar .navbar-dropdown-content a {
+  display: block;
+  font-size: 18px; /*Manually added */
+  padding-bottom: 5px; /*Manually added */
+}
+
+.navbar-sidebar .navbar-section {
+  padding-left: 0;
+  transition: padding-left 0.3s ease;
+}
+
+.navbar-sidebar:hover .navbar-section {
+  padding-left: 25px;
+}
+
+.navbar-sidebar .navbar-section a {
+  padding: 5px 0;
+  display: block;
+  align-items: center;
+}
+
+.navbar-sidebar:hover .navbar-section a {
+  padding: 5px 0;
+}

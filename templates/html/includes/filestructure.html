@@ -1,0 +1,124 @@
+Ultimate_Financial_Tracker/
+│
+├── app.py                         # Main Flask application  (Ongoing development)
+├── models.py                      # SQLAlchemy models (Ongoing development)
+│
+├── data/
+│   └── database.db                # SQLite database
+│
+├── routes/                        # All Blueprints for modular route management
+│   ├── __init__.py             # Unsure if this is necessary, please double check after reviewing code.
+│   ├── personal.py                # Personal finances routes & APIs (Ongoing development)
+│   ├── company.py                # Company finances routes (Ongoing development)
+│   ├── taxes.py                # Company finances routes (Ongoing development)
+│   ├── financial_health.py
+│   └── uploads.py              # 🆕 NEW: File upload route
+│
+├── static/
+│   ├── uploads/
+│   │   ├── receipts/
+│   │   ├── contracts/
+│   │   └── properties/
+│   │                          
+│   ├── css/
+│   │   ├── base.css             # Main CSS styling file (Ongoing development)
+│   │   ├── disablity.css        # disablity.html specific styles (Completed)
+│   │   ├── retirement.css       # retirement.html specific styles (Completed)
+│   │   ├── stocks.css           # stocks.html specific styles (Development Next)
+│   │   ├── dividends.css        # dividends.html specific styles (Development Next)
+│   │   ├── nav.css              # Navigation bar styles (Completed)
+│   │   ├── rental_properties.css (Completed)
+│   │   ├── banking.css          # banking.html specific styles (Not yet started)
+│   │   ├── credit_card.css      # credit_card.html specific styles (Not yet started)
+│   │   ├── jdl_global.css       # jdl_global.html specific styles (Not yet started)
+│   │   ├── jdl_texas.css        # jdl_texas.html (Not yet started)
+│   │   ├── jdl_virginia.css     # jdl_virginia.html specific styles (Development Next)
+│   │   ├── jdl_office.css       # jdl_office.html specific styles (Not yet started)
+│   │   └── thm_ug.css           # thm_ug.html specific styles (Not yet started)
+│   │
+│   ├── img/
+│   │   ├── logo.png             # Application logo
+│   │   └── icons/               # Icons for navigation and UI
+│   │       ├── banking.png
+│   │       ├── credit_card.png
+│   │       ├── income.png
+│   │       ├── company_finances.png
+│   │       ├── taxes.png
+│   │       ├── financial_health.png
+│   │       └── dashboard.png
+│   └── js/
+│       ├── retirement.js     # JavaScript for dynamic editing & totals (Completed)
+│       ├── rental_properties.js # JavaScript for rental properties page (Completed)
+│       ├── personal_finances.js # JavaScript for personal finances page (Not yet started)
+│       ├── rental_properties.js (Completed)
+│       ├── nav.js (Completed)
+│       ├── disability.js     # JavaScript for dynamic editing & totals (Completed)
+│       ├── stocks.js         # JavaScript for dynamic editing & totals (Not yet started)
+│       ├── dividends.js      # JavaScript for dynamic editing & totals (Development Next)
+│       ├── banking.js        # JavaScript for banking page (Not yet started)
+│       ├── credit_card.js    # JavaScript for credit card page (Not yet started)
+│       ├── jdl_global.js     # JavaScript for JDL Global page (Not yet started)
+│       ├── jdl_texas.js      # JavaScript for JDL Texas page (Not yet started)
+│       ├── jdl_virginia.js   # JavaScript for JDL Virginia page (Ongoing development)
+│       ├── jdl_office.js     # JavaScript for JDL Office page (Not yet started)
+│       └── thm_ug.js         # JavaScript for THM UG page (Not yet started)
+│
+├── templates/
+│   └── html/
+│       ├── includes/
+│       │   ├── base.html          # Master layout template with nav (Ongoing development)
+│       │   ├── nav.html           # Sidebar navigation bar (Completed)
+│       │   └── filestructure.html # Where the file structure is kept and updated (Ongoing development)
+│       │
+│       ├── dashboard.html         # Main dashboard landing page (Ongoing development)
+│       │
+│       ├── personal_finances/     # Links to personal_finances.html
+│       │   ├── banking/
+│       │   │   ├── n26.html (Not yet started)
+│       │   │   ├── scu.html (Not yet started)
+│       │   │   └── usaa.html (Not yet started)
+│       │   ├── credit_card/
+│       │   │   ├── chase.html (Ongoing development)
+│       │   │   └── capital_one.html (Ongoing development)
+│       │   └── income/
+│       │       ├── retirement.html (Completed)
+│       │       ├── disability.html (Completed)
+│       │       ├── dividends.html (Development Next)
+│       │       └── stocks.html (Development Next)
+│       │
+│       ├── company_finances/     # Links to company_finances.html
+│       │   ├── jdl_global.html (Not yet started)
+│       │   ├── jdl_texas.html (Not yet started)
+│       │   ├── jdl_virginia.html (Development Next)
+│       │   ├── jdl_office.html (Not yet started)
+│       │   ├── thm_ug.html (Not yet started)
+│       │   └── rental_properties.html (Completed)
+│       │
+│       ├── taxes/
+│       │   ├── 1040.html (Development Next)
+│       │   ├── jdl_global_tax_tracker.html (Not yet started)
+│       │   ├── jdl_texas_tax_tracker.html (Not yet started)
+│       │   ├── jdl_virginia_tax_tracker.html (Development Next)
+│       │   ├── jdl_office_tax_tracker.html (Not yet started)
+│       │   └── thm_ug_tax_tracker.html (Not yet started)
+│       │
+│       └── financial_health/
+│           ├── personal_finances.html (Development Next)
+│           ├── company_finances.html (Development Next)
+│           ├── budget.html (Not yet started)
+│           ├── net_worth.html (Not yet started)
+│           ├── expenses.html (Not yet started)
+│           ├── investments.html (Not yet started)
+│           ├── loans.html (Not yet started)
+│           ├── credit_score.html (Not yet started)
+│           ├── financial_goals.html (Not yet started)
+│           └── financial_education.html (Not yet started)
+│       
+├── models/                       # 🆕 Modular model definitions
+│   ├── __init__.py              # NEW: imports and binds all models
+│   ├── documents.py             # NEW: UploadedFile model lives here
+│   ├── retirement.py            # (future)
+│   ├── rental.py                # (future)
+│   └── ...                      # Other grouped models
+
+└── README.md or other project docs...

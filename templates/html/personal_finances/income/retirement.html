@@ -1,0 +1,79 @@
+{# templates/html/personal_finances/income/retirement.html #}
+{% extends 'html/includes/base.html' %}
+
+{% block title %}USAF Retirement Pay Tracker - Project Zeus Monies{% endblock %}
+
+{% block content %}
+    {# The main content container for the page #}
+    <div class="container" id="usaf-retirement-container">
+        {# Page Title Section #}
+        <h1 class="page-title" id="usaf-retirement-page-title">USAF Retirement Pay</h1>
+        <p class="page-description">
+            Tracking your USAF retirement pay is crucial for financial planning. This tool helps you monitor your monthly retirement income, including gross pay, taxed amounts, and net pay. You can also export your data for further analysis or record-keeping.
+        </p>
+
+        {# Message box for success/error messages from JavaScript #}
+        <div id="message-box" class="message-box" style="display: none;"></div>
+
+        <!-- Current Calendar Year Totals Section -->
+        <section class="current-totals-section" id="usaf-current-year-totals">
+            {# This h2 is a flex container for the title text and the Export button #}
+            <h2 class="section-title" id="current-calendar-year-title">
+                Current Calendar Year: <span id="current-calendar-year"></span>
+                {# Export Button - MUST be inside this h2 for the flex layout to work #}
+                <button id="export-button" class="btn btn-export"> {# Removed btn-small, as btn-export has specific size #}
+                    Export Data
+                </button>
+            </h2>
+            <div class="total-summary-item">
+                <strong>Current Gross Total:</strong> <span id="running-gross-total"></span>
+            </div>
+            <div class="total-summary-item">
+                <strong>Current Tax Total:</strong> <span id="running-taxed-total"></span>
+            </div>
+            <div class="total-summary-item">
+                <strong>Current Year Net Total:</strong> <span id="running-net-total"></span>
+            </div>
+        </section>
+
+        {# This header-section is for the current date display, separate from the totals section #}
+        <div class="header-section">
+            <span class="current-date">Current Date: <span id="current-date"></span></span>
+        </div>
+
+        <table class="data-table" id="usaf-retirement-data-table">
+            {# SINGLE THEAD for the entire table #}
+            <thead>
+                <tr>
+                    <th class="rounded-tl-lg">Month</th>
+                    <th>Gross Pay</th>
+                    <th>Taxed Amount</th>
+                    <th class="rounded-tr-lg">Net Pay</th>
+                </tr>
+            </thead>
+            <tbody id="main-table-body">
+                <!-- Year headers (tr) and monthly data (tr) will be populated by JavaScript -->
+                <!-- No nested tbody elements here -->
+            </tbody>
+        </table>
+
+        <!-- Export Output Area -->
+        <div id="export-output-area" class="export-area hidden">
+            <h2 class="section-title">Exported Data (JSON)</h2>
+            <textarea id="exported-data-textarea" class="export-textarea" readonly></textarea>
+            <div class="export-buttons-container"> {# New container for copy button #}
+                <button id="copy-export-button" class="btn btn-save"> {# Removed btn-small #}
+                    Copy to Clipboard
+                </button>
+                <div id="copy-message" class="copy-message hidden">Copied!</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {# Link to the external JavaScript file #}
+    <script src="{{ url_for('static', filename='js/retirement.js') }}" defer></script>
+    {# Link to page-specific CSS #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/retirement.css') }}"> {# Renamed from main.css #}
+{% endblock %}

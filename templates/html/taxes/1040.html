@@ -1,0 +1,104 @@
+{# templates/html/taxes/1040.html #}
+{% extends 'html/includes/base.html' %}
+
+{% block title %}1040 Tax Estimator{% endblock %}
+
+{% block content %}
+<div class="container" id="tax-estimator-container">
+    <h1 class="page-title">1040 Tax Estimator</h1>
+    <p class="page-description">
+        Estimate your federal income tax liability. Fill in the fields below to see a breakdown of your estimated taxes.
+        Calculations are based on 2025 tax brackets and rules.
+    </p>
+
+    <div id="message-box" class="message-box" style="display: none;"></div>
+
+    <div class="calculator-layout">
+        <div class="calculator-inputs">
+            <h2>Filing Information</h2>
+            <div class="form-group">
+                <label for="filing-status">Filing Status</label>
+                <select id="filing-status" class="form-control">
+                    <option value="single">Single</option>
+                    <option value="married_jointly">Married Filing Jointly</option>
+                    <option value="married_separately">Married Filing Separately</option>
+                    <option value="head_of_household">Head of Household</option>
+                    <option value="surviving_spouse">Qualifying Surviving Spouse</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dependents">Dependents (Qualifying for Child Tax Credit)</label>
+                <input type="number" id="dependents" class="form-control" value="0" min="0">
+            </div>
+
+            <h2>Income</h2>
+            <div class="form-group">
+                <label for="wages">Wages, Salaries, Tips</label>
+                <input type="number" id="wages" class="form-control" placeholder="0.00">
+            </div>
+            <div class="form-group">
+                <label for="capital-gain">Long-term Capital Gain or Loss</label>
+                <input type="number" id="capital-gain" class="form-control" placeholder="0.00">
+            </div>
+             <div class="form-group">
+                <label for="business-income">Net Business Income or Loss (Schedule C)</label>
+                <input type="number" id="business-income" class="form-control" placeholder="0.00">
+            </div>
+
+
+            <h2>Deductions & Adjustments</h2>
+             <div class="form-group">
+                <label for="educator-expenses">Educator Expenses</label>
+                <input type="number" id="educator-expenses" class="form-control" placeholder="0.00">
+            </div>
+            <div class="form-group">
+                <label for="deduction-type">Deduction Type</label>
+                <select id="deduction-type" class="form-control">
+                    <option value="standard">Use Standard Deduction</option>
+                    <option value="itemized">Use Itemized Deduction</option>
+                </select>
+            </div>
+             <div class="form-group hidden" id="itemized-deduction-group">
+                <label for="itemized-deduction">Itemized Deduction Amount</label>
+                <input type="number" id="itemized-deduction" class="form-control" placeholder="0.00">
+            </div>
+
+            <button id="calculate-btn" class="btn btn-primary">Calculate</button>
+        </div>
+
+        <div class="calculator-results">
+            <h2>Your Estimated Tax</h2>
+            <div class="result-item">
+                <span>Adjusted Gross Income (AGI):</span>
+                <span id="result-agi">$0.00</span>
+            </div>
+            <div class="result-item">
+                <span>Total Deductions:</span>
+                <span id="result-deductions">$0.00</span>
+            </div>
+            <div class="result-item">
+                <span>Taxable Income:</span>
+                <span id="result-taxable-income">$0.00</span>
+            </div>
+            <div class="result-item">
+                <span>Self-Employment Tax:</span>
+                <span id="result-se-tax">$0.00</span>
+            </div>
+            <div class="result-item">
+                <span>Child Tax Credit:</span>
+                <span id="result-child-credit">$0.00</span>
+            </div>
+            <hr>
+            <div class="result-item total">
+                <span><strong>Total Estimated Tax:</strong></span>
+                <span id="result-total-tax"><strong>$0.00</strong></span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/1040.css') }}">
+    <script src="{{ url_for('static', filename='js/1040.js') }}" defer></script>
+{% endblock %}

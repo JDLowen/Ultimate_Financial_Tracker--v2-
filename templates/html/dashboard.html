@@ -1,0 +1,44 @@
+<!------------------------------------------------------------->
+<!--------------Welcome to the Dashboard Page------------------>
+<!------------------------------------------------------------->
+<!--
+This is the main dashboard page for the Ultimate Financial Tracker application.
+It serves as the landing page and is a child to base.html
+-->
+
+{# templates/html/dashboard.html #}
+{% extends "html/includes/base.html" %}
+
+{% block title %}Financial Dashboard{% endblock %}
+
+{% block content %}
+    {# Wrap content in a container for consistent styling #}
+    <div class="container">
+        <h1 class="page-title">Welcome to the Financial Dashboard</h1>
+        <p>This is the main dashboard page for the Ultimate Financial Tracker application.</p>
+        <p>Use the navigation menu to access different sections of the application.</p>
+
+        <div class="dashboard-widgets">
+            <div class="widget">
+                <h2>Income Overview</h2>
+                <p>Summary of your income sources.</p>
+            </div>
+            <div class="widget">
+                <h2>Expense Overview</h2>
+                <p>Summary of your expenses.</p>
+            </div>
+            <div class="widget">
+                <h2>Budget Tracker</h2>
+                <p>Track your budget and savings goals.</p>
+            </div>
+            {# Add more widgets here as needed #}
+        </div>
+    </div>
+{% endblock %}
+
+{# If you add any specific JavaScript for the dashboard, include it here #}
+{% block scripts %}
+    {# <script src="{{ url_for('static', filename='js/dashboard.js') }}" defer></script> #}
+{% endblock %}
+
+
