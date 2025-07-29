@@ -12,6 +12,11 @@ import os
 
 # Create uploads blueprint
 uploads_bp = Blueprint('uploads', __name__, url_prefix='/uploads')
+###########################################
+# -------- File Upload Logic --------
+@uploads_bp.route('/test')
+def upload_test():
+    return render_template('html/includes/upload_test.html')
 
 @uploads_bp.route('/upload_file', methods=['POST'])
 def upload_file():
