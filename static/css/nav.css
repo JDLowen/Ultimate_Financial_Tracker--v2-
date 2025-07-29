@@ -2,7 +2,7 @@
 
 /* Sidebar Navigation - Hover to Expand (from _sidebar.scss) */
 .navbar-sidebar {
-  width: 50px; /* Initial collapsed width */
+  width: 70px; /* Initial collapsed width */
   background-color: #001423; /* Hardcoded #1f1f1f */
   color: white;
   height: 100vh; /* Full viewport height */

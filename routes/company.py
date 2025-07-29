@@ -3,11 +3,13 @@
 # - Routes for Company Finances
 ###########################################
 
-from flask import Blueprint, render_template, jsonify, request
-from models import db, RentalProperty
+from flask import Blueprint, render_template, jsonify, request, current_app
+from models import db, RentalProperty, UploadedFile
+from werkzeug.utils import secure_filename
 from datetime import datetime
 import calendar
 import logging # Import logging for better error messages
+import os
 
 # Create a Blueprint for company finances
 company_bp = Blueprint('company', __name__, url_prefix='/company_finances',
@@ -77,49 +79,62 @@ def get_rental_properties_data():
 
 @company_bp.route('/api/rental_properties/add', methods=['POST'])
 def add_rental_property():
-    data = request.json
-
-    # Server-side validation for unique Property ID
-    existing_property = RentalProperty.query.filter_by(property_id=data.get('property_id')).first()
-    if existing_property:
-        return jsonify({"error": "Property ID already exists. Please choose a unique ID."}), 400
-
     try:
-        # Convert date strings to date objects
-        purchase_date_str = data.get('purchase_date')
-        purchase_date_obj = datetime.strptime(purchase_date_str, '%Y-%m-%d').date() if purchase_date_str else None
+        data = request.form
+        file = request.files.get('file')
+        notes = data.get('notes', '')
 
-        maturity_date_str = data.get('maturity_date')
-        maturity_date_obj = datetime.strptime(maturity_date_str, '%Y-%m-%d').date() if maturity_date_str else None
-        
-        # Handle optional fields that might be empty strings from the form
-        loan_number_val = data.get('loan_number')
-        mortgage_broker_name_val = data.get('mortgage_broker_name')
+        property_id = data.get('property_id')
+        if RentalProperty.query.filter_by(property_id=property_id).first():
+            return jsonify({"error": "Property ID already exists."}), 400
+
+        purchase_date = datetime.strptime(data.get('purchase_date'), '%Y-%m-%d').date() if data.get('purchase_date') else None
+        maturity_date = datetime.strptime(data.get('maturity_date'), '%Y-%m-%d').date() if data.get('maturity_date') else None
 
         new_property = RentalProperty(
-            property_id=data.get('property_id'),
+            property_id=property_id,
             property_name=data.get('property_name'),
             address=data.get('address'),
             city=data.get('city'),
             state=data.get('state'),
             county=data.get('county'),
-            built_year=data.get('built_year'),
-            purchase_date=purchase_date_obj,
+            built_year=int(data.get('built_year') or 0),
+            purchase_date=purchase_date,
             ownership_association=data.get('ownership_association'),
-            purchase_price=data.get('purchase_price'),
-            down_payment=data.get('down_payment'),
-            interest_rate=data.get('interest_rate'),
-            mortgage_broker_name=mortgage_broker_name_val if mortgage_broker_name_val else None,
-            maturity_date=maturity_date_obj,
-            loan_number=loan_number_val if loan_number_val else None
+            purchase_price=float(data.get('purchase_price') or 0),
+            down_payment=float(data.get('down_payment') or 0),
+            interest_rate=float(data.get('interest_rate') or 0),
+            mortgage_broker_name=data.get('mortgage_broker_name'),
+            maturity_date=maturity_date,
+            loan_number=data.get('loan_number')
         )
         db.session.add(new_property)
-        db.session.commit()
+        db.session.commit() # Commit to get the new_property.id
+
+        # --- FILE UPLOAD LOGIC ---
+        if file:
+            filename = secure_filename(file.filename)
+            save_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+            file.save(save_path)
+
+            # Create the link in the database
+            uploaded_file = UploadedFile(
+                filename=filename,
+                filetype=file.content_type,
+                related_page='rental_properties',
+                notes=notes,
+                related_id=new_property.id  # This is the crucial link!
+            )
+            db.session.add(uploaded_file)
+            db.session.commit()
+
         return jsonify({"message": "Property added successfully!", "property": new_property.to_dict()}), 201
+
     except Exception as e:
         db.session.rollback()
-        company_bp.logger.error(f"Error adding rental property: {e}", exc_info=True)
-        return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
+        company_bp.logger.error(f"Error adding property: {e}", exc_info=True)
+        return jsonify({"error": str(e)}), 500
+
 
 @company_bp.route('/api/rental_properties/update/<int:property_db_id>', methods=['PUT'])
 def update_rental_property(property_db_id):

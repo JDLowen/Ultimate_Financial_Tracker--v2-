@@ -91,12 +91,13 @@ class RentalProperty(db.Model):
     city = db.Column(db.String(100), nullable=False)
     state = db.Column(db.String(50), nullable=False)
     county = db.Column(db.String(100))
-    built_year = db.Column(db.Integer, nullable=False)
-    purchase_date = db.Column(db.Date, nullable=False) # Store as Date object
+    country = db.Column(db.String(100))
+    built_year = db.Column(db.String(50))
+    purchase_date = db.Column(db.Date) # Store as Date object
     ownership_association = db.Column(db.String(100), nullable=False)
-    purchase_price = db.Column(db.Float, nullable=False)
-    down_payment = db.Column(db.Float, nullable=False)
-    interest_rate = db.Column(db.Float, nullable=False)
+    purchase_price = db.Column(db.Float)
+    down_payment = db.Column(db.Float)
+    interest_rate = db.Column(db.Float)
     mortgage_broker_name = db.Column(db.String(100))
     maturity_date = db.Column(db.Date) # NEW FIELD: Optional
     loan_number = db.Column(db.String(100)) # NEW FIELD: Optional
@@ -111,6 +112,7 @@ class RentalProperty(db.Model):
             'city': self.city,
             'state': self.state,
             'county': self.county,
+            'country': self.country,
             'built_year': self.built_year,
             'purchase_date': self.purchase_date.isoformat() if self.purchase_date else None, # Format date for JSON
             'ownership_association': self.ownership_association,
@@ -125,28 +127,28 @@ class RentalProperty(db.Model):
     
     def __repr__(self):
         return f"<RentalProperty {self.property_id} - {self.property_name}>"
-
+__tablename__ = 'uploaded_files'
 #-----------------------------------------
 # Stores uploaded files (contracts, receipts, etc.)
 #-----------------------------------------
 class UploadedFile(db.Model):
-    __tablename__ = 'uploaded_files'
-
     id = db.Column(db.Integer, primary_key=True)
     filename = db.Column(db.String(255), nullable=False)
     filetype = db.Column(db.String(50))
     related_page = db.Column(db.String(100))  # e.g., "retirement", "rental_properties"
     notes = db.Column(db.Text)
     date_uploaded = db.Column(db.DateTime, default=datetime.utcnow)
+    related_id = db.Column(db.Integer)  # ✅ This line is missing
+
 
     def to_dict(self):
         return {
             'id': self.id,
             'filename': self.filename,
             'filetype': self.filetype,
-            'related_page': self.related_page,
-            'notes': self.notes,
             'date_uploaded': self.date_uploaded.strftime('%Y-%m-%d %H:%M:%S'),
+            'related_page': self.related_page,
+            'notes': self.notes
         }
 
     def __repr__(self):
